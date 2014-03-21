@@ -1,0 +1,280 @@
+.feed-ctrl {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  .feed-items-container {
+    padding: ($unit*3) $unit;
+    box-sizing: border-box;
+    min-height: 100%;
+    max-width: 600px;
+    background: rgba(0,0,0,0.1);
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .feed-item {
+    position: relative;
+    color: #333;
+    border-radius: 4px;
+    border: 1px solid $feed_item_background;
+    margin-bottom: $unit/2;
+    padding: $unit/2 $unit/2 $unit/2 60px;
+    background: $feed_item_background;
+
+    .feed-item-delete {
+      position: absolute;
+      top: $unit/2;
+      right: $unit/2;
+      border: 0;
+      background: $feed_item_background - #111;
+      color: #555;
+      padding: $unit/4 $unit/2;
+      border-radius: 3px;
+
+      &:hover {
+        background: #c00;
+        color: #fff;
+      }
+    }
+
+    .feed-item-posted-at {
+      font-size: 0.8em;
+      color: #888;
+      margin-bottom: $unit/4;
+
+    }
+
+    .feed-item-user-name {
+      font-size: 0.8em;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .feed-item-user-thumb {
+      height: 40px;
+      border-radius: 3px;
+      box-shadow: 0px 0px 3px 0px #fff;
+      position: absolute;
+      top: $unit/2;
+      left: $unit/2;
+    }
+
+    .feed-comments-cta {
+      display: block;
+      text-align: right;
+      font-size: 0.8em;
+      margin-top: $unit/2;
+    }
+  }
+  .feed-item.ng-enter {
+    -webkit-transition: 0.3s linear all;
+    transition: 0.3s ease-out all;
+    -webkit-transform: rotateX(45deg);
+    transform: rotateX(45deg);
+    opacity: 0;
+    top: -50px;
+  }
+  .feed-item.ng-enter.ng-enter-active {
+    -webkit-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+    opacity: 1;
+    top: 0px;
+  }
+  .feed-item.ng-leave {
+    -webkit-transition: 0.5s linear all;
+    transition: 1s ease-out all;
+    -webkit-transform: rotateX(0deg) scale(1);
+    transform: rotateX(0deg) scaleZ(1);
+    opacity: 0.5;
+    top: 0px;
+  }
+  .feed-item.ng-leave.ng-leave-active {
+    -webkit-transform: rotateX(500deg) scale(0.5);
+    transform: rotateX(500deg) scaleZ(0.5);
+    opacity: 0;
+    top: -200px;
+  }
+
+  .feed-items {
+    -webkit-perspective: 1000;
+    perspective: 1000;
+    -webkit-perspective-origin: top center;
+    perspective-origin: top center;
+  }
+
+  .feed-items-none {
+    text-align: center;
+    font-size: 20px;
+    margin: $unit;
+    color: $background_main_color;
+    text-shadow: 0px -1px 0px rgba(0,0,0,0.1);
+  }
+
+  .feed-post {
+    background: $foreground_main_color;
+    color: #000;
+    padding: $unit/2 80px $unit/2 50px;
+    position: relative;
+    margin-bottom: $unit;
+
+    .feed-post-submit {
+      height: 30px;
+      width: 60px;
+      position: absolute;
+      top: $unit/2;
+      right: $unit/2;
+      border-radius: 4px;
+      border: 0;
+      color: $foreground_main_color;
+      background-color: $link_color;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+
+      &:hover {
+        background-color: $link_hover_color;
+      }
+    }
+
+    .feed-post-submit.submitting {
+      background-image: url("img/big_cloud.gif");
+      background-size: (87px/4) (91px/4);
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+
+    .feed-post-text {
+      height: 30px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      padding-left: $unit/2;
+      padding-right: $unit/2;
+      width: 100%;
+      font-family: $base_font;
+      font-size: $feed_font_size;
+    }
+
+    .feed-post-user-thumb {
+      position: absolute;
+      top: $unit/2;
+      left: $unit/2;
+      height: 30px;
+      border-radius: 2px;
+      box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.2);
+    }
+  }
+
+  .user-nav-bar {
+    position: fixed;
+    z-index: 1000;
+    top: -50px;
+    left: 0px;
+    width: 100%;
+    background: rgba(255,255,255,0.1);
+    text-align: right;
+
+    &.active {
+      top: 0;
+    }
+
+    .user {
+      display: inline-block;
+      padding: 5px $unit/2;
+    }
+
+    .user-thumb {
+      height: 30px;
+      border-radius: 2px;
+      border: 2px solid $background_main_color;
+
+      &:hover {
+        box-shadow: 0px 0px 1px 1px #fff;
+      }
+    }
+  }
+
+  .user-menu {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+
+    display: none;
+    &.active {
+      display: block;
+    }
+
+    ul {
+      position: absolute;
+      top: 0px;
+      right: $unit/2;
+
+      li {
+        padding: 5px;
+        background: #444;
+        text-align: left;
+        white-space: nowrap;
+        border-top: 2px solid $background_main_color;
+        min-width: 150px;
+
+        &:hover {
+          color: #fff;
+          background: #666;
+        }
+      }
+    }
+  }
+
+  .feed-item-delete-modal {
+    text-align: center;
+    padding: $unit;
+    background: rgba(0,0,0,0.7);
+    position: relative;
+    top: $unit*4;
+    max-width: 200px;
+    margin: 0 auto;
+    border-radius: 8px;
+
+    .controls {
+      margin-top: $unit;
+
+      button {
+        width: 40%;
+        height: 40px;
+        border-radius: 5px;
+        font-size: 1.2em;
+        border: 0;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+
+      .feed-item-delete-no {
+        background: #666;
+        color: #ccc;
+        float: left;
+      }
+
+      .feed-item-delete-yes {
+        background: #c00;
+        color: #ddd;
+        float: right;
+      }
+    }
+
+    .title {
+      font-size: 1.2em;
+      margin-bottom: $unit/2;
+    }
+  }
+
+  .feed-item-delete-modal-container {
+    display: none;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.8);
+  }
+}

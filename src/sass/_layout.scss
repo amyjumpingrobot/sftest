@@ -1,0 +1,17 @@
+.centered-container {
+  margin: 0 auto;
+}
+.slim-centered-container {
+  margin: 0 auto;
+}
+
+@media screen and (min-width: $mobile_break_point) {
+  .slim-centered-container {
+    width: 400px;
+  }
+}
+@media screen and (max-width: $mobile_break_point) {
+  .slim-centered-container {
+    width: 100%;
+  }
+}

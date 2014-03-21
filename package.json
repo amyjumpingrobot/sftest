@@ -1,0 +1,38 @@
+{
+  "name": "prototype",
+  "version": "0.0.1",
+  "engines": {
+    "node": "0.10.21"
+  },
+  "dependencies": {
+    "browserify": "~3.19.1",
+    "coffee-script": "~1.6.3",
+    "express": "~3.1.0",
+    "growl": "~1.7.0",
+    "grunt": "~0.4.2",
+    "grunt-contrib-clean": "~0.4.1",
+    "grunt-browserify": "~1.3.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-angular-templates": "~0.3.10",
+    "grunt-bower-task": "~0.3.4",
+    "grunt-contrib-sass": "~0.6.0",
+    "node-sass": "~0.8.1",
+    "es6ify": "~0.4.8",
+    "grunt-autoprefixer": "~0.6.5",
+    "phantomjs": "~1.9",
+    "grunt-karma": "=0.7.0",
+    "karma": "=0.10.4",
+    "karma-junit-reporter": "~0.1",
+    "karma-jasmine": "~0.1.3",
+    "karma-ng-scenario": "~0.1",
+    "karma-chrome-launcher": "~0.1.0",
+    "karma-firefox-launcher": "~0.1.0",
+    "karma-html2js-preprocessor": "~0.1.0",
+    "karma-requirejs": "~0.1.0",
+    "karma-coffee-preprocessor": "~0.1.0",
+    "karma-phantomjs-launcher": "~0.1.0",
+    "karma-script-launcher": "~0.1.0"    
+  }
+}

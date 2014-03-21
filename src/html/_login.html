@@ -1,0 +1,14 @@
+<div class="login-ctrl slim-centered-container">
+  <img src="img/R&DUX_Logo.png" class="logo">
+  <p class="prompt">
+    Choose your login:
+  </p>
+</div>
+<div class="login-ctrl centered-container">
+  <ul class="user-list">
+    <li class="user hoverable" ng-repeat="user in users" ng-click="setUser(user)">
+      <img class="user-thumb" ng-src="{{thumbUrl(user)}}">
+      <div class="user-name" ng-bind="user.name"></div>
+    </li>
+  </ul>
+</div>
