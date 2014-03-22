@@ -16,6 +16,8 @@
     margin: $unit;
   }
   .user-thumb {
+    box-shadow: inset 0px 2px 4px 0px rgba(0,0,0,0.4);
+    height: 100px;
     width: 100px;
     border-radius: 3px;
     border: 3px solid $background_main_color;

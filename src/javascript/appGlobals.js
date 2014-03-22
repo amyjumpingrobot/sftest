@@ -1,13 +1,15 @@
 (function(){
   module.exports = ['$location', '$cookieStore', 'appModel', 'usersModel',
   function($location, $cookieStore, appModel, usersModel) {
-    return {
+    var exports = {
       getLoggedInUser: function() {
-        var userId = $cookieStore.get("userId"),
-            users = usersModel.slice(0);
+        return exports.getUserById($cookieStore.get("userId"));
+      },
+      getUserById: function(id) {
+        var users = usersModel.slice(0);
 
         return users.filter(function(user){
-          return user.id == userId;
+          return user.id == id;
         })[0];
       },
       isEnterKeyEvent: function($event) {
@@ -25,8 +27,10 @@
         $location.url('feed');
       },
       thumbUrl: function(user) {
-        return appModel.profilePhotosBase + user.thumb;
+        return appModel.profilePhotosBase + (user ? user.thumb : "avatar_120.png");
       }
-    }
+    };
+
+    return exports;
   }];
 }).call(this);

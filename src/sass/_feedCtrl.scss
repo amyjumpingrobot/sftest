@@ -1,16 +1,98 @@
+%feed-item-form {
+  background: $foreground_main_color;
+  color: #000;
+  padding: $unit/2 80px $unit/2 50px;
+}
+
+%feed-item-form-submit {
+  height: 30px;
+  width: 60px;
+  position: absolute;
+  top: $unit/2;
+  right: $unit/2;
+  border-radius: 4px;
+  border: 0;
+  color: $foreground_main_color;
+  background-color: $link_color;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+
+  &:hover {
+    background-color: $link_hover_color;
+  }
+
+  &.submitting {
+    background-image: url("img/big_cloud.gif");
+    background-size: (87px/4) (91px/4);
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+}
+
+%feed-item-form-post-text {
+  height: 30px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  padding-left: $unit/2;
+  padding-right: $unit/2;
+  width: 100%;
+  font-family: $base_font;
+  font-size: $feed_font_size;
+}
+
+%feed-item-form-user-thumb {
+  position: absolute;
+  top: $unit/2;
+  left: $unit/2;
+  height: 30px;
+  border-radius: 2px;
+  box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.2);
+}
+
 .feed-ctrl {
   position: relative;
   width: 100%;
   height: 100%;
 
   .feed-items-container {
-    padding: ($unit*3) $unit;
-    box-sizing: border-box;
-    min-height: 100%;
+    position: relative;
     max-width: 600px;
     background: rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+
+  .feed-items-pane {
+    -webkit-transition: left 0.3s ease-out;
+    transition: left 0.3s ease-out;
+    position: relative;
+    left: 0px;
+    padding: ($unit*3) $unit;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
+  }
+  .feed-items-pane.inactive {
+    left: -100%;
+  }
+
+  .feed-item-conversation-pane {
+    -webkit-transition: left 0.3s ease-out;
+    transition: left 0.3s ease-out;
+    position: absolute;
+    padding: ($unit*3) $unit;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 100%;
+    background: $background_main_color;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .feed-item-conversation-pane.active {
+    left: 0%;
   }
 
   .feed-item {
@@ -53,6 +135,7 @@
 
     .feed-item-user-thumb {
       height: 40px;
+      width: 40px;
       border-radius: 3px;
       box-shadow: 0px 0px 3px 0px #fff;
       position: absolute;
@@ -112,55 +195,53 @@
   }
 
   .feed-post {
-    background: $foreground_main_color;
-    color: #000;
-    padding: $unit/2 80px $unit/2 50px;
     position: relative;
     margin-bottom: $unit;
+    @extend %feed-item-form;
 
-    .feed-post-submit {
-      height: 30px;
+    .feed-post-submit { @extend %feed-item-form-submit; }
+    .feed-post-text { @extend %feed-item-form-post-text; }
+    .feed-post-user-thumb { @extend %feed-item-form-user-thumb; }
+  }
+
+  .feed-conversation-post {
+    @extend %feed-item-form;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    box-sizing: border-box;
+
+    .feed-conversation-post-submit { @extend %feed-item-form-submit; }
+    .feed-conversation-post-text { @extend %feed-item-form-post-text; }
+    .feed-conversation-post-user-thumb { @extend %feed-item-form-user-thumb; }
+  }
+
+  .feed-item-conversation-topic {
+    background: #fff;
+    padding: $unit $unit $unit 80px;
+    position: relative;
+
+    .feed-item-conversation-text {
+      color: #000;
+    }
+
+    .feed-item-conversation-user-name {
+      margin-top: 12px;
+      color: #000;
+      font-size: 1.2em;
+    }
+
+    .feed-item-conversation-posted-at {
+      color: #888;
+    }
+
+    .feed-item-conversation-user-thumb {
+      height: 60px;
       width: 60px;
       position: absolute;
       top: $unit/2;
-      right: $unit/2;
-      border-radius: 4px;
-      border: 0;
-      color: $foreground_main_color;
-      background-color: $link_color;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-
-      &:hover {
-        background-color: $link_hover_color;
-      }
-    }
-
-    .feed-post-submit.submitting {
-      background-image: url("img/big_cloud.gif");
-      background-size: (87px/4) (91px/4);
-      background-position: center center;
-      background-repeat: no-repeat;
-    }
-
-    .feed-post-text {
-      height: 30px;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-      padding-left: $unit/2;
-      padding-right: $unit/2;
-      width: 100%;
-      font-family: $base_font;
-      font-size: $feed_font_size;
-    }
-
-    .feed-post-user-thumb {
-      position: absolute;
-      top: $unit/2;
       left: $unit/2;
-      height: 30px;
-      border-radius: 2px;
-      box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.2);
     }
   }
 
@@ -170,11 +251,41 @@
     top: -50px;
     left: 0px;
     width: 100%;
-    background: rgba(255,255,255,0.1);
+    background: rgba(30,100,200,0.8);
     text-align: right;
+    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.3);
 
     &.active {
       top: 0;
+    }
+
+    .controls {
+      -webkit-transition: left 0.3s ease-out;
+      transition: left 0.3s ease-out;
+      position: absolute;
+      top: $unit/2;
+      left: $unit;
+      opacity: 1;
+
+      .feed-item-conversation-cancel {
+        background: $foreground_main_color;
+        color: #000;
+        border: 0;
+        border-radius: 4px;
+        height: 25px;
+        padding-top: 3px;
+        padding-left: $unit/2;
+        padding-right: $unit/2;
+        font-size: 14px;
+
+        &:hover {
+          background: #fff;
+        }
+      }
+    }
+    .controls.inactive {
+      left: $unit*4;
+      opacity: 0;
     }
 
     .user {
@@ -184,6 +295,7 @@
 
     .user-thumb {
       height: 30px;
+      width: 30px;
       border-radius: 2px;
       border: 2px solid $background_main_color;
 
@@ -227,7 +339,7 @@
   .feed-item-delete-modal {
     text-align: center;
     padding: $unit;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.85);
     position: relative;
     top: $unit*4;
     max-width: 200px;
@@ -277,4 +389,12 @@
     height: 100%;
     background: rgba(255,255,255,0.8);
   }
+}
+
+.feed-ctrl-image-loader {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  left: -100px;
+  overflow: hidden;
 }
