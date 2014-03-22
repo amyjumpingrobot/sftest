@@ -19,6 +19,7 @@
       $scope.$deleteModal = $(".feed-item-delete-modal-container");
       $scope.$feedContainer = $(".feed-items-container");
       $scope.$feedItemsPane = $(".feed-items-pane");
+      $scope.$feedItemConversation = $(".feed-conversation-post");
       $scope.$feedItemConversationPane = $(".feed-item-conversation-pane");
       $scope.$feedItemConversationSubmit = $(".feed-conversation-post-submit");
       $scope.$feedItemConversationText = $(".feed-conversation-post-text");
@@ -89,6 +90,7 @@
         }
       }
       $scope.showConversationPane = function (show) {
+        $scope.$feedItemConversation.toggleClass('active', show);
         $scope.$userNavBarControls.toggleClass('inactive', !show);
         $scope.$feedItemsPane.toggleClass('inactive', show);
         $scope.$feedItemConversationPane.toggleClass('active', show);

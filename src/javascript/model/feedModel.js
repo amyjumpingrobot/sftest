@@ -6,7 +6,19 @@
       new $rootScope.FeedItem(
         appGlobals.getUserById(10),
         now - (5*60*60*1000),
-        "Does anyone have recent customer testimonials for the new Southbend ranges? I've got a meeting later today with Moderna Bistro. Thanks."
+        "Does anyone have recent customer testimonials for the new Southbend ranges? I've got a meeting later today with Moderna Bistro. Thanks.",
+        [
+          new $rootScope.FeedItem(
+            appGlobals.getUserById(30),
+            now - (5*60*1000),
+            "You should reach out to Frank"
+            ),
+          new $rootScope.FeedItem(
+            appGlobals.getUserById(40),
+            now - (5*60*1000) - (15*1000),
+            "Maybe Carol knows?"
+            )
+        ]
         ),
       new $rootScope.FeedItem(
         appGlobals.getUserById(20),

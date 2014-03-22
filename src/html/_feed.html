@@ -57,14 +57,14 @@
           <div class="feed-text">{{conversationItem.content}}</div>
         </li>
       </ul>
-
-      <form class="feed-conversation-post" ng-submit="feedItemConversationSubmit()">
-        <img class="feed-conversation-post-user-thumb" ng-src="{{thumbUrl(user)}}">
-        <input class="feed-conversation-post-text" ng-required="true" ng-pattern="/\S/" ng-model="feedItemConversationText" ng-trim="true" placeholder="Write a comment">
-        <button class="feed-conversation-post-submit hoverable" ng-click="feedPostNow($event)" ng-disabled="feedPostText.$invalid">Post</button>
-      </form>
     </div>
   <div>
+
+  <form class="feed-conversation-post" ng-submit="feedItemConversationSubmit()">
+    <img class="feed-conversation-post-user-thumb" ng-src="{{thumbUrl(user)}}">
+    <input class="feed-conversation-post-text" ng-required="true" ng-pattern="/\S/" ng-model="feedItemConversationText" ng-trim="true" placeholder="Write a comment">
+    <button class="feed-conversation-post-submit hoverable" ng-click="feedPostNow($event)" ng-disabled="feedPostText.$invalid">Post</button>
+  </form>
 
   <div class="feed-item-delete-modal-container" ng-click="dismissDeleteModal()">
     <div class="feed-item-delete-modal">

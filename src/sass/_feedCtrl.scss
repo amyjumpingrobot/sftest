@@ -207,20 +207,80 @@
   .feed-conversation-post {
     @extend %feed-item-form;
     position: absolute;
-    bottom: 0px;
+    bottom: -100px;
     left: 0px;
     width: 100%;
     box-sizing: border-box;
 
+    -webkit-transition: 0.3s bottom ease-out;
+    transition: 0.3s bottom ease-out;
+
     .feed-conversation-post-submit { @extend %feed-item-form-submit; }
     .feed-conversation-post-text { @extend %feed-item-form-post-text; }
     .feed-conversation-post-user-thumb { @extend %feed-item-form-user-thumb; }
+  }
+  .feed-conversation-post.active {
+    bottom: 0px;
+  }
+
+  .feed-item-conversation-item {
+    position: relative;
+    color: #333;
+    border-radius: 4px;
+    border: 1px solid $feed_item_background;
+    margin-bottom: $unit/2;
+    padding: $unit/2 $unit/2 $unit/2 60px;
+    background: $feed_item_background;
+
+    .feed-item-posted-at {
+      font-size: 0.8em;
+      color: #888;
+      margin-bottom: $unit/4;
+    }
+
+    .feed-item-user-name {
+      font-size: 0.8em;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .feed-item-user-thumb {
+      height: 40px;
+      width: 40px;
+      border-radius: 3px;
+      box-shadow: 0px 0px 3px 0px #fff;
+      position: absolute;
+      top: $unit/2;
+      left: $unit/2;
+    }
+
+    .feed-comments-cta {
+      display: block;
+      text-align: right;
+      font-size: 0.8em;
+      margin-top: $unit/2;
+    }
+  }
+  .feed-item-conversation-item.ng-enter {
+    -webkit-transition: 0.3s linear all;
+    transition: 0.3s ease-out all;
+    -webkit-transform: rotateX(45deg);
+    transform: rotateX(45deg);
+    opacity: 0;
+    top: -50px;
+  }
+  .feed-item-conversation-item.ng-enter.ng-enter-active {
+    -webkit-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+    opacity: 1;
+    top: 0px;
   }
 
   .feed-item-conversation-topic {
     background: #fff;
     padding: $unit $unit $unit 80px;
     position: relative;
+    margin-bottom: $unit;
 
     .feed-item-conversation-text {
       color: #000;
