@@ -72,6 +72,7 @@
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .feed-items-pane.inactive {
     left: -100%;
@@ -90,6 +91,7 @@
     background: $background_main_color;
     overflow-x: hidden;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .feed-item-conversation-pane.active {
     left: 0%;
@@ -283,6 +285,7 @@
     margin-bottom: $unit;
 
     .feed-item-conversation-text {
+      margin-top: $unit/2;
       color: #000;
     }
 
@@ -381,7 +384,8 @@
       right: $unit/2;
 
       li {
-        padding: 5px;
+        padding: $unit/2;
+        line-height: 1.5em;
         background: #444;
         text-align: left;
         white-space: nowrap;

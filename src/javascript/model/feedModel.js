@@ -28,7 +28,24 @@
       new $rootScope.FeedItem(
         appGlobals.getUserById(30),
         now - (6*24*60*60*1000),
-        "Collaboratively brand high-quality services rather than intermandated web services. Credibly engage long-term high-impact sources and principle-centered channels. Authoritatively e-enable bleeding-edge networks whereas error-free vortals."
+        "Collaboratively brand high-quality services rather than intermandated web services. Credibly engage long-term high-impact sources and principle-centered channels. Authoritatively e-enable bleeding-edge networks whereas error-free vortals.",
+        [
+          new $rootScope.FeedItem(
+            appGlobals.getUserById(10),
+            now - (2*24*60*60*1000),
+            "Collaboratively deliver premium resources whereas one-to-one ideas?"
+            ),
+          new $rootScope.FeedItem(
+            appGlobals.getUserById(40),
+            now - (2*24*60*60*1000) + (1*60*60*1000),
+            "Credibly unleash interdependent solutions via bleeding-edge processes!"
+            ),
+          new $rootScope.FeedItem(
+            appGlobals.getUserById(30),
+            now - (2*24*60*60*1000) + (5*60*1000),
+            "Dynamically envisioneer unique channels and clicks-and-mortar paradigms. Efficiently brand resource-leveling process improvements whereas interoperable core competencies."
+            )
+        ]
         ),
       new $rootScope.FeedItem(
         appGlobals.getUserById(40),

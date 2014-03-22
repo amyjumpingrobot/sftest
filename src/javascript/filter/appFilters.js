@@ -19,6 +19,8 @@
         return Math.floor(minutesAgo) + ' minutes ago'
       } else if (hoursAgo <= 24) {
         return Math.floor(hoursAgo) + ' hours ago'
+      } else if (daysAgo < 2) {
+        return Math.floor(daysAgo) + ' day ago'
       } else {
         return Math.floor(daysAgo) + ' days ago'
       }
