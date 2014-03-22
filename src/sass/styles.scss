@@ -12,6 +12,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 @import "_globals";
 @import "_reset";
+@import 'bourbon/bourbon';
 
 @font-face {
   font-family: 'ProximaNova';
@@ -29,8 +30,8 @@ html {
 }
 
 body {
-  background: linear-gradient(to bottom, $background_main_color - #222, $background_main_color) 0 0;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#337ae1', endColorstr='#1158bf');
+  @include linear-gradient(to bottom, $background_main_color - #222, $background_main_color);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1158bf', endColorstr='#337ae1');
   font-family: $base_font;
   min-height: 100%;
 }

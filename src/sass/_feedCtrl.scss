@@ -47,7 +47,7 @@
 %feed-item-form-post-text {
   height: 30px;
   border: 1px solid #ccc;
-  box-sizing: border-box;
+  @include box-sizing(border-box);
   padding-left: $unit/2;
   padding-right: $unit/2;
   width: 100%;
@@ -77,12 +77,11 @@
   }
 
   .feed-items-pane {
-    -webkit-transition: left 0.3s ease-out;
-    transition: left 0.3s ease-out;
+    @include transition(left 0.3s ease-out);
     position: relative;
     left: 0px;
     padding: ($unit*3) $unit;
-    box-sizing: border-box;
+    @include box-sizing(border-box);
     width: 100%;
     height: 100%;
     overflow-x: hidden;
@@ -95,11 +94,10 @@
   }
 
   .feed-item-conversation-pane {
-    -webkit-transition: left 0.3s ease-out;
-    transition: left 0.3s ease-out;
+    @include transition(left 0.3s ease-out);
     position: absolute;
     padding: ($unit*3) $unit;
-    box-sizing: border-box;
+    @include box-sizing(border-box);
     width: 100%;
     height: 100%;
     top: 0px;
@@ -170,30 +168,24 @@
     }
   }
   .feed-item.ng-enter {
-    -webkit-transition: 0.3s linear all;
-    transition: 0.3s ease-out all;
-    -webkit-transform: rotateX(45deg);
-    transform: rotateX(45deg);
+    @include transition(0.3s ease-out all);
+    @include transform(rotateX(45deg));
     opacity: 0;
     top: -50px;
   }
   .feed-item.ng-enter.ng-enter-active {
-    -webkit-transform: rotateX(0deg);
-    transform: rotateX(0deg);
+    @include transform(rotateX(0deg));
     opacity: 1;
     top: 0px;
   }
   .feed-item.ng-leave {
-    -webkit-transition: 0.5s linear all;
-    transition: 1s ease-out all;
-    -webkit-transform: rotateX(0deg) scale(1);
-    transform: rotateX(0deg) scaleZ(1);
+    @include transition(1s ease-out all);
+    @include transform(rotateX(0deg) scaleZ(1));
     opacity: 0.5;
     top: 0px;
   }
   .feed-item.ng-leave.ng-leave-active {
-    -webkit-transform: rotateX(500deg) scale(0.5);
-    transform: rotateX(500deg) scaleZ(0.5);
+    @include transform(rotateX(500deg) scaleZ(0.5));
     opacity: 0;
     top: -200px;
   }
@@ -229,10 +221,9 @@
     bottom: -100px;
     left: 0px;
     width: 100%;
-    box-sizing: border-box;
+    @include box-sizing(border-box);
 
-    -webkit-transition: 0.3s bottom ease-out;
-    transition: 0.3s bottom ease-out;
+    @include transition(0.3s bottom ease-out);
 
     .feed-conversation-post-submit { @extend %feed-item-form-submit; }
     .feed-conversation-post-text { @extend %feed-item-form-post-text; }
@@ -281,16 +272,13 @@
     }
   }
   .feed-item-conversation-item.ng-enter {
-    -webkit-transition: 0.3s linear all;
-    transition: 0.3s ease-out all;
-    -webkit-transform: rotateX(45deg);
-    transform: rotateX(45deg);
+    @include transition(0.3s ease-out all);
+    @include transform(rotateX(45deg));
     opacity: 0;
     top: -50px;
   }
   .feed-item-conversation-item.ng-enter.ng-enter-active {
-    -webkit-transform: rotateX(0deg);
-    transform: rotateX(0deg);
+    @include transform(rotateX(0deg));
     opacity: 1;
     top: 0px;
   }
@@ -340,8 +328,7 @@
     }
 
     .controls {
-      -webkit-transition: left 0.3s ease-out;
-      transition: left 0.3s ease-out;
+      @include transition(left 0.3s ease-out);
       position: absolute;
       top: $unit/2;
       left: $unit;
