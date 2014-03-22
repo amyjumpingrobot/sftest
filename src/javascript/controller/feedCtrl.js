@@ -11,8 +11,12 @@
       $scope.user = g.getLoggedInUser();
       $scope.feed = feedModel;
       $scope.feedItemConversation = null;
+      $scope.feedItemConversationLabel = "Post";
+      $scope.feedItemConversationSubmitting = false;
       $scope.feedItemConversationText = null;
+      $scope.feedPostLabel = "Post";
       $scope.feedPostText = null;
+      $scope.feedPostSubmitting = false;
       $scope.feedLastUpdateTime = 0;
       $scope.feedItemToDelete = null;
 
@@ -51,21 +55,27 @@
       }
       $scope.dismissDeleteModal = function() {
         $scope.$deleteModal.fadeOut();
-        $(window).off('keyup', $scope.watchKeysForDeleteModal);
+      }
+      $scope.dismissUserNavBarIfScrolled = function($paneMaybeScrolled) {
+        $scope.$navMenu.toggleClass('active', $paneMaybeScrolled.scrollTop() < 50);
       }
       $scope.feedItemConversationSubmit = function () {
         if ($scope.feedItemConversationText && $scope.feedItemConversationText!='') {
-          var $oldValue = $scope.$feedItemConversationSubmit.html();
+          var oldValue = $scope.feedItemConversationLabel;
 
           $scope.$feedItemConversationText.attr({disabled: true});
-          $scope.$feedItemConversationSubmit.attr({disabled: true}).html("").addClass("submitting");
+          $scope.feedItemConversationLabel = '';
+          $scope.feedItemConversationSubmitting = true;
 
           $timeout(function() {
             $scope.feedItemConversation.childFeedItems.push(new $rootScope.FeedItem($scope.user, new Date().getTime(), $scope.feedItemConversationText));
             $scope.feedItemConversationText = '';
 
             $scope.$feedItemConversationText.attr({disabled: false});
-            $scope.$feedItemConversationSubmit.attr({disabled: false}).html($oldValue).removeClass("submitting");
+            $scope.feedItemConversationLabel = oldValue;
+            $scope.feedItemConversationSubmitting = false;
+
+            $scope.closeConversation();
           }, 1000);
         }
       }
@@ -75,17 +85,19 @@
       }
       $scope.feedPostSubmit = function(parentFeedItem) {
         if ($scope.feedPostText && $scope.feedPostText!='') {
-          var $oldValue = $scope.$feedPostSubmit.html();
+          var oldValue = $scope.feedPostLabel;
 
+          $scope.feedPostSubmitting = true;
           $scope.$feedPostText.attr({disabled: true});
-          $scope.$feedPostSubmit.attr({disabled: true}).html("").addClass("submitting");
+          $scope.feedPostLabel = '';
 
           $timeout(function() {
             $scope.feed.push(new $rootScope.FeedItem($scope.user, new Date().getTime(), $scope.feedPostText));
             $scope.feedPostText = '';
 
+            $scope.feedPostSubmitting = false;
             $scope.$feedPostText.attr({disabled: false});
-            $scope.$feedPostSubmit.attr({disabled: false}).html($oldValue).removeClass("submitting");
+            $scope.feedPostLabel = oldValue;
           }, 1000);
         }
       }
@@ -94,12 +106,13 @@
         $scope.$userNavBarControls.toggleClass('inactive', !show);
         $scope.$feedItemsPane.toggleClass('inactive', show);
         $scope.$feedItemConversationPane.toggleClass('active', show);
+
+        // Regardless of state, bring back the nav! :)
+        $scope.$navMenu.addClass('active');
       }
 
       $scope.showDeleteModal = function() {
         $scope.$deleteModal.fadeIn();
-
-        $(window).on('keyup', $scope.watchKeysForDeleteModal.bind(this));
       }
       $scope.toggleMenu = function() {
         $scope.$userMenu.toggleClass('active');
@@ -111,18 +124,17 @@
         $scope.feedItemConversation = feedItem;
         $scope.showConversationPane(true);
       }
-      $scope.watchKeysForDeleteModal = function(ev) {
-        var keyCode = ev.keyCode || ev.charCode;
-
-        switch(keyCode) {
-          case 13: $scope.deleteFeedItemNow(); break;
-          case 27: $scope.dismissDeleteModal(); break;
-        }
-      }
 
       function init() {
         $scope.updateContainerHeight();
         $(window).on('resize', $scope.updateContainerHeight.bind(this));
+
+        $scope.$feedItemsPane.on('scroll', function() {
+          $scope.dismissUserNavBarIfScrolled($scope.$feedItemsPane);
+        }.bind(this));
+        $scope.$feedItemConversationPane.on('scroll', function() {
+          $scope.dismissUserNavBarIfScrolled($scope.$feedItemConversationPane);
+        }.bind(this));
 
         $scope.$on('feed-post-submit', $scope.feedPostSubmit);
         $scope.$navMenu.on('mouseleave', function() {

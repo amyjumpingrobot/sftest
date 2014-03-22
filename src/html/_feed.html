@@ -15,10 +15,12 @@
 
   <div class="feed-items-container slim-centered-container">
     <div class="feed-items-pane">
-      <form class="feed-post" ng-submit="feedPostSubmit()">
+      <form name="feedPostForm" class="feed-post" ng-submit="feedPostSubmit()" novalidate>
         <img class="feed-post-user-thumb" ng-src="{{thumbUrl(user)}}">
         <input class="feed-post-text" ng-required="true" ng-pattern="/\S/" ng-model="feedPostText" ng-trim="true" placeholder="What's new?">
-        <button class="feed-post-submit hoverable" ng-click="feedPostNow($event)" ng-disabled="feedPostText.$invalid">Post</button>
+        <button ng-click="feedPostNow($event)"
+                ng-disabled="feedPostForm.$invalid"
+                ng-class="{disabled:feedPostForm.$invalid, 'feed-post-submit':true, hoverable:true, submitting: feedPostSubmitting}">{{feedPostLabel}}</button>
       </form>
 
       <ul class="feed-items">
@@ -60,10 +62,12 @@
     </div>
   <div>
 
-  <form class="feed-conversation-post" ng-submit="feedItemConversationSubmit()">
+  <form name="feedConversationPostForm" class="feed-conversation-post" ng-submit="feedItemConversationSubmit()" novalidate>
     <img class="feed-conversation-post-user-thumb" ng-src="{{thumbUrl(user)}}">
     <input class="feed-conversation-post-text" ng-required="true" ng-pattern="/\S/" ng-model="feedItemConversationText" ng-trim="true" placeholder="Write a comment">
-    <button class="feed-conversation-post-submit hoverable" ng-click="feedPostNow($event)" ng-disabled="feedPostText.$invalid">Post</button>
+    <button ng-class="{disabled:feedConversationPostForm.$invalid, 'feed-conversation-post-submit':true, hoverable:true, submitting:feedItemConversationSubmitting}"
+            ng-click="feedPostNow($event)"
+            ng-disabled="feedConversationPostForm.$invalid">{{feedItemConversationLabel}}</button>
   </form>
 
   <div class="feed-item-delete-modal-container" ng-click="dismissDeleteModal()">

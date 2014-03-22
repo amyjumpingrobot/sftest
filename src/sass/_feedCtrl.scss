@@ -21,7 +21,12 @@
     background-color: $link_hover_color;
   }
 
+  &.disabled {
+    background-color: #ccc;
+  }
+
   &.submitting {
+    background-color: $link_hover_color;
     background-image: url("img/big_cloud.gif");
     background-size: (87px/4) (91px/4);
     background-position: center center;
