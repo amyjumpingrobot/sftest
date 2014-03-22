@@ -30,6 +30,7 @@ html {
 
 body {
   background: linear-gradient(to bottom, $background_main_color - #222, $background_main_color) 0 0;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#337ae1', endColorstr='#1158bf');
   font-family: $base_font;
   min-height: 100%;
 }

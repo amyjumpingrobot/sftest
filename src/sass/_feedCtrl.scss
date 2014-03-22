@@ -1,3 +1,13 @@
+@mixin hideMSIEScrollBars {
+  scrollbar-base-color: #1158bf;
+  scrollbar-3dlight-color: #1158bf;
+  scrollbar-highlight-color: #1158bf;
+  scrollbar-track-color: #1158bf;
+  scrollbar-arrow-color: #1158bf;
+  scrollbar-shadow-color: #1158bf;
+  scrollbar-darkshadow-color: #1158bf;
+}
+
 %feed-item-form {
   background: $foreground_main_color;
   color: #000;
@@ -77,7 +87,8 @@
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch;      /* iOS compatibility */
+    @include hideMSIEScrollBars;
   }
   .feed-items-pane.inactive {
     left: -100%;
@@ -96,7 +107,8 @@
     background: $background_main_color;
     overflow-x: hidden;
     overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch;      /* iOS compatibility */
+    @include hideMSIEScrollBars;
   }
   .feed-item-conversation-pane.active {
     left: 0%;
